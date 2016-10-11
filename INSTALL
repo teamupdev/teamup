@@ -1,0 +1,9 @@
+Building teamup
+
+See doc/readme-qt.rst for instructions on building teamup QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of teamup.
+
+See doc/build-*.txt for instructions on building teamupd,
+the intended-for-services, no-graphical-interface, reference
+implementation of teamup.
