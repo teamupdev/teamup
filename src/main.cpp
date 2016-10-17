@@ -42,7 +42,7 @@ CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 
 unsigned int nTargetSpacing = 1 * 30; // 30 seconds
 unsigned int nStakeMinAge = 1 * 60; // 60 seconds
-unsigned int nStakeMaxAge = -1;           // Unlimited
+unsigned int nStakeMaxAge = -1;         // Unlimited
 unsigned int nModifierInterval = 10 * 60; // time to elapse before new modifier is computed
 
 int nCoinbaseMaturity = 10;
@@ -963,8 +963,13 @@ const int DAILY_BLOCKCOUNT =  2880;
 // miner's coin stake reward based on coin age spent (coin-days)
 int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
+	int64_t nRewardCoinYear;
 
-	int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
+    nRewardCoinYear = MAX_MINT_PROOF_OF_STAKE;
+	
+	int64_t nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
+	
+	//int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
